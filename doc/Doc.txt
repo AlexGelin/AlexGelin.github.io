@@ -1,0 +1,68 @@
+/*******************************************************************************
+           AN ALGORITHM FOR REDUCING NUMBER-FIELD DEFINING POLYNOMIALS
+                   IMPLEMENTED BY ALEXANDRE GÉLIN - LIP6/UPMC
+*******************************************************************************/
+
+This prototype is derived from the following article:
+     "Reducing number field defining polynomials:
+     an application to class group computations"
+published in LMS Journal of Computation and Mathematics, vol 19, pp.315-331
+and presented at ANTS XII, Kaiserslautern, 2016.
+
+/******************************************************************************/
+
+The main function is PolRed. It requires 2 input parameters and 3 optional ones:
+     PolRed(Pol,c : Prec:=2^6,Proof:=false,Var:=false)
+where:
+
+ - Pol is the input polynomial which we want to reduce. It must be defined
+using the variable 'x'.
+ - c is the weight parameter: all weights will be powers of c.
+
+ - Prec is the number of digits used for precision. The default value is fixed
+to 2^6 and the function can increase it if necessary. It may happen that
+during the computation, precision must be increased again. A message explains it
+and yields the required value.
+
+ - If Proof is false, then the algorithm stops after finding a small defining
+polynomial. If Proof is true, it continues until we are sure that the output
+is the minimal one.
+
+ - If Var is true, the function also outputs the coordinates of the element
+whose minimal polynomial is the output.
+
+/******************************************************************************/
+
+How to choose the parameter 'c' ?
+
+This choice depends on what one expects:
+ - a large 'c' makes each lattice enumeration costly,
+ - a small 'c' enlarges the number of lattices to consider.
+
+/******************************************************************************/
+
+EXAMPLES:
+
+> Pol:=x^12 + 4*x^11 - 17*x^10 - 68*x^9 + 108*x^8 + 416*x^7 -\
+> 314*x^6 - 1129*x^5 + 358*x^4 + 1353*x^3 - 36*x^2 - 540*x - 72;
+> time PolRed(Pol,1000);
+x^12 - 172*x^11 + 133*x^10 + 926*x^9 - 465*x^8 - 1826*x^7 +\
+343*x^6 + 1534*x^5 + 127*x^4 - 438*x^3 - 87*x^2 + 36*x + 9
+Time: 0.090
+> time PolRed(Pol,100);
+x^12 - 14*x^11 + 25*x^10 + 62*x^9 - 155*x^8 - 50*x^7 +\
+263*x^6 - 50*x^5 - 155*x^4 + 62*x^3 + 25*x^2 - 14*x + 1
+Time: 2.160
+> time PolRed(Pol,10);
+x^12 - 14*x^11 + 25*x^10 + 62*x^9 - 155*x^8 - 50*x^7 +\
+263*x^6 - 50*x^5 - 155*x^4 + 62*x^3 + 25*x^2 - 14*x + 1
+Time: 2.090
+
+> Pol:=x^5 - 2*x^4 - 8001397580*x^3 - 31542753393650*x^2 +\
+3636653302451131875*x + 4818547529425280067500;
+> time PolRed(Pol,10:Proof:=false);
+x^5 - 5843635*x^4 + 931633*x^2 + 6577*x - 8570
+Time: 0.380
+> time PolRed(Pol,10:Proof:=true);
+x^5 - 5843635*x^4 + 931633*x^2 + 6577*x - 8570
+Time: 2.290
