@@ -189,6 +189,12 @@ section h1
     padding-top: 50px;
 }
 
+section h3
+{
+    color:  #400080;
+    text-align : center
+}
+
 .text
 {
     text-align:justify;
