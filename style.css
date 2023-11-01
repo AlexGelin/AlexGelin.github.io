@@ -1,7 +1,7 @@
 body
 {
     color: #000000;
-    font-family: Utopia;
+    font-family: Liberation;
     background-color: #C0FFFF;
 }
 
@@ -56,8 +56,8 @@ nav #menu_middle
     top: 0px;
     left: 20%;
     text-align: middle;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 nav #menu_right
@@ -127,7 +127,7 @@ header
 #nom
 {
     display: inline-block;
-    width: 35%;
+    width: 34%;
     padding-top: 10px;
     padding-left: 50px;
     vertical-align: top;
@@ -136,7 +136,7 @@ header
 #coordonnees
 {
     display: inline-block;
-    width: 35%;
+    width: 36%;
     padding-top: 20px;
     padding-left: 50px;
     vertical-align: top;
@@ -253,11 +253,11 @@ hr /*2 lignes en bas*/
     width:110px;
 }
 
-.date_140
+.date_145
 {
     display: inline-block;
     text-align:center;
-    width:140px;
+    width:145px;
 }
 
 h1[id="top"]
